@@ -30,7 +30,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
 
 
-@interface GameViewController ()
+@interface GameViewController ()<SCNSceneRendererDelegate, SCNPhysicsContactDelegate>
 {
 @private
     //steps of the demo
@@ -156,13 +156,16 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     [gestureRecognizers addObjectsFromArray:sceneView.gestureRecognizers];
     
     // add a tap gesture recognizer
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(handleTap:)];
     
     // add a pan gesture recognizer
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(handlePan:)];
     
     // add a double tap gesture recognizer
-    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                       action:@selector(handleDoubleTap:)];
     doubleTapGesture.numberOfTapsRequired = 2;
     
     [tapGesture requireGestureRecognizerToFail:panGesture];
